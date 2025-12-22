@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TodoModule } from './todo/todo.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/todo_db'), 
-    TodoModule,
+     
+    TodoModule, PrismaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
