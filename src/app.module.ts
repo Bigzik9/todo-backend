@@ -6,8 +6,8 @@ import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
-     
-    TodosModule, PrismaModule,
+    TodosModule,
+    PrismaModule, 
   ],
   controllers: [AppController],
   providers: [AppService],
