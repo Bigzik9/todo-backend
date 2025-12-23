@@ -6,13 +6,25 @@ import { PrismaClient } from '@prisma/client';
 export class PrismaService extends PrismaClient implements OnModuleInit {
   private readonly logger = new Logger(PrismaService.name);
 
-  async onModuleInit() {
-    await this.$connect();
-    this.logger.log('Prisma connected to database');
+  constructor() {
+    super({
+      // This line fixes the "DATABASE_URL not found" error on Render
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
+    });
+  }
 
-    // Optional: Run schema push or migrations at startup (safe for Render)
-    // Uncomment if you want auto-schema sync (use with caution in prod)
-    // await this.$executeRaw`SELECT 1`; // Test connection
+  async onModuleInit() {
+    try {
+      await this.$connect();
+      this.logger.log('Successfully connected to database');
+    } catch (error) {
+      this.logger.error('Failed to connect to database', error);
+      throw error;
+    }
   }
 
   async onModuleDestroy() {
