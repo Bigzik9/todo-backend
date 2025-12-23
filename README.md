@@ -44,6 +44,91 @@ A simple Todo REST API built with NestJS.
 - PostgreSQL
 
 ### Run Locally
+Testing the Todos API
+
+You can test the API endpoints using Postman
+ or any other API client. The base URL for all requests is:
+
+http://<your-backend-host>/todos
+
+Endpoints
+
+Get all todos
+
+Method: GET
+
+URL: /todos
+
+Description: Retrieves a list of all todos.
+
+Example Request:
+
+GET http://localhost:3000/todos
+
+
+Example Response:
+
+[
+  { "id": 1, "title": "Learn NestJS", "completed": false },
+  { "id": 2, "title": "Build Todo App", "completed": true }
+]
+
+
+Create a new todo
+
+Method: POST
+
+URL: /todos
+
+Body (JSON):
+
+{
+  "title": "New Todo Item"
+}
+
+
+Description: Creates a new todo with the provided title.
+
+Example Response:
+
+{ "id": 3, "title": "New Todo Item", "completed": false }
+
+
+Update a todo
+
+Method: PUT
+
+URL: /todos/:id
+
+Body (JSON):
+
+{
+  "title": "Updated Todo Title",
+  "completed": true
+}
+
+
+Description: Updates the todo with the given id. You can update the title, completed status, or both.
+
+Example Response:
+
+{ "id": 1, "title": "Updated Todo Title", "completed": true }
+
+
+Delete a todo
+
+Method: DELETE
+
+URL: /todos/:id
+
+Description: Deletes the todo with the given id.
+
+Example Response:
+
+{ "message": "Todo deleted successfully" }
+
+
+💡 Tip: Replace :id in the URL with the actual todo ID you want to update or delete.
 ```bash
 npm install
 npm run start:dev
